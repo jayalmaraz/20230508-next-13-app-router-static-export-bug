@@ -1,13 +1,21 @@
-'use client';
+import { isWeb } from '@/utils/isWeb';
+import { PostScreen } from './PostScreen';
+import { PostScreenClientPage } from './PostScreenClientPage';
 
-import useSWR from 'swr';
+const fetcher = (url: string) => fetch(url, { cache: 'no-cache' }).then((r) => r.json());
 
-const fetcher = (url: string) => fetch(url).then((r) => r.json());
+export default async function Page({ params }: { params: { id: string } }) {
+  if (isWeb) {
+    const data = await fetcher(`https://jsonplaceholder.typicode.com/posts/${params.id}`);
+    return <PostScreen data={data} />;
+  }
 
-export default function Page({ params }: { params: { id: string } }) {
-  const { data, error } = useSWR(`https://jsonplaceholder.typicode.com/posts/${params.id}`, fetcher);
-  if (error) return 'Failed to load';
-  if (!data) return 'Loading...';
-
-  return data.title;
+  return <PostScreenClientPage params={params} />;
 }
+
+// fucking bullshit temporary hack workaround (see https://github.com/vercel/next.js/issues/49059)
+export const generateStaticParams = isWeb
+  ? undefined
+  : async () => {
+      return [{ id: '1' }, { id: '2' }];
+    };

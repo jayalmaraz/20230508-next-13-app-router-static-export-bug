@@ -13,6 +13,12 @@ export default function Page() {
           <Link href="/post/2">Post 2</Link>
         </li>
       </ul>
+
+      <ul>
+        <li>
+          <Link href="/profile">My profile</Link>
+        </li>
+      </ul>
     </>
   );
 }
