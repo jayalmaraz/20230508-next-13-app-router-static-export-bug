@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "a": "BUILD_MODE='web' next dev",
+    "b": "BUILD_MODE='web' next build && next start",
+    "c": "BUILD_MODE='native' next dev",
+    "d": "BUILD_MODE='native' next build && npx cap sync && npx cap run ios --target 078F2385-C6D7-4B3E-AF67-B6A70FCAD27E"
   },
   "dependencies": {
     "@capacitor/android": "^5.0.1",
