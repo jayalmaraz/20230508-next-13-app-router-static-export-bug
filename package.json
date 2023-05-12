@@ -6,18 +6,28 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "a": "BUILD_MODE='web' next dev",
+    "b": "BUILD_MODE='web' next build && next start",
+    "c": "BUILD_MODE='native' next dev",
+    "d": "BUILD_MODE='native' next build && npx cap sync && npx cap run ios --target 078F2385-C6D7-4B3E-AF67-B6A70FCAD27E"
   },
   "dependencies": {
+    "@capacitor/android": "^5.0.1",
+    "@capacitor/core": "^5.0.1",
+    "@capacitor/ios": "^5.0.1",
     "@types/node": "20.1.0",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.1",
-    "next": "^13.4.1",
+    "next": "canary",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "swr": "^2.1.5",
     "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^5.0.1"
   }
 }
